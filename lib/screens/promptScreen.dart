@@ -19,7 +19,6 @@ class _PromptscreenState extends State<Promptscreen> with SingleTickerProviderSt
   GlobalKey responseKey = GlobalKey();
   late AnimationController _controller;
   late Animation<double> _animation;
-  final GlobalKey _resultContainerKey = GlobalKey();
   FocusNode _focusNode = FocusNode();
   double? containerheight = 60;
   TextEditingController promptcontroller = TextEditingController();
@@ -221,14 +220,20 @@ class _PromptscreenState extends State<Promptscreen> with SingleTickerProviderSt
               padding: const EdgeInsets.only(
                 top:20
               ),
-              child: Text(
-                  'ChatGPT',
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0),
-                  ),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      'ChatGPT',
+                      style: GoogleFonts.inter(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ),
+                    Icon(Icons.arrow_right_rounded)
+                ],
+              ),
             )
             : 
                Padding(
@@ -312,32 +317,32 @@ class _PromptscreenState extends State<Promptscreen> with SingleTickerProviderSt
 
                             } else {
                     
-                              if(isLoading)
-                              {
+                          //     if(isLoading)
+                          //     {
                                 
-                                return Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Row(
-                                  children: [
-                                     CircleAvatar(
-                                              radius: 15,
-                                              backgroundImage: AssetImage("assets/images/chatgpt-logo.jpg"),
-                                              foregroundColor: Colors.amber,
-                                            ),
-                                            AnimatedBuilder(
-                            animation: _animation,
-                            builder: (context, child) => CustomPaint(
-                              size: const Size(30, 40),
-                              painter: BouncingBallPainter(_animation.value),
-                            ),
-                          ),
-                                  ],
-                                ),
-                              ),
-                            );
-                              }
+                          //       return Align(
+                          //     alignment: Alignment.centerLeft,
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.all(15.0),
+                          //       child: Row(
+                          //         children: [
+                          //            CircleAvatar(
+                          //                     radius: 15,
+                          //                     backgroundImage: AssetImage("assets/images/chatgpt-logo.jpg"),
+                          //                     foregroundColor: Colors.amber,
+                          //                   ),
+                          //                   AnimatedBuilder(
+                          //   animation: _animation,
+                          //   builder: (context, child) => CustomPaint(
+                          //     size: const Size(30, 40),
+                          //     painter: BouncingBallPainter(_animation.value),
+                          //   ),
+                          // ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   );
+                          //     }
                               
                         
                               return Align(
@@ -352,8 +357,9 @@ class _PromptscreenState extends State<Promptscreen> with SingleTickerProviderSt
                                           children: [
                                             CircleAvatar(
                                               radius: 15,
-                                              backgroundImage: AssetImage("assets/images/chatgpt-logo.jpg"),
-                                              foregroundColor: Colors.amber,
+                                             
+                                              foregroundImage: AssetImage("assets/images/chatgpt-logo.jpg"),
+                                            
                                             ),
                                             SingleChildScrollView(
                                               child: Container(
@@ -525,7 +531,7 @@ class _PromptscreenState extends State<Promptscreen> with SingleTickerProviderSt
                                     ),
                               ),
                                Icon(CupertinoIcons.mic,size: 30,),
-                               SizedBox(width:15,),
+                               SizedBox(width:1,),
                               messagetapped ? SizedBox(width: 10) : SizedBox(width: 0),
                               InkWell(
                                 onTap: () {
